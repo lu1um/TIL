@@ -18,6 +18,7 @@ class MainWindow(QMainWindow):
         self.__loginTime = 0
 
         self.__initUI(dftxt)
+        self.__timerOn()
         self.aco = login.AutoCheckOut(urldir, iddir)
     
     def __initUI(self, dftxt):
@@ -74,7 +75,7 @@ class MainWindow(QMainWindow):
 
         self.show()
 
-    def timerOn(self):
+    def __timerOn(self):
         t = time.time()
         kor = time.localtime(t)
         if kor.tm_hour>12:
@@ -89,7 +90,7 @@ class MainWindow(QMainWindow):
         self.ampm_min.setText(f'{kor.tm_min}분')
         self.ampm_sec.setText(f'{kor.tm_sec}초')
 
-        timer = Timer(1, self.timerOn)
+        timer = Timer(1, self.__timerOn)
         timer.start()
         if self.__loginTime:
             self.__startChrome(kor)

@@ -8,12 +8,12 @@ import interface
 
 URL_TEXT_DIRECTORY = 'URL.txt'
 ID_TEXT_DIRECTORY = 'PASSWORD.txt'
+SURVEY_TEXT_DIRECTORY = 'SURVEY.txt'
 DEFALUT_TEXT = '아산/배방읍/자택'
 
 def main():
     app = interface.QApplication(sys.argv)
-    ui = interface.MainWindow(URL_TEXT_DIRECTORY, ID_TEXT_DIRECTORY, DEFALUT_TEXT)
-    ui.timerOn()
+    ui = interface.MainWindow(URL_TEXT_DIRECTORY, ID_TEXT_DIRECTORY, SURVEY_TEXT_DIRECTORY, DEFALUT_TEXT)
     sys.exit(app.exec_())
         
 if __name__ == '__main__':
