@@ -65,6 +65,3 @@ class AutoCheckOut:
     def test(self):
         print(self.__url)
         print(self.CHECKOUT_XPATH)
-
-        # 설문참여 위에서 5번째, 보충수업 신청설문
-        # //*[@id="wrap"]/form/div/div[2]/div/div/ul/li[5]/div/div[3]/a

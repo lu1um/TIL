@@ -2,6 +2,7 @@
 
 from threading import Timer
 import time
+import schedule
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QPushButton, QRadioButton, QButtonGroup
@@ -9,14 +10,17 @@ from PyQt5.QtGui import QPixmap, QPainter, QPen, QFont, QImage
 
 import login
 
-class MainWindow(QMainWindow):
-    def __init__(self, urldir, iddir):
-        super(MainWindow, self).__init__()
+SEC_DELAY = 5
 
-        self.__initUI()
+class MainWindow(QMainWindow):
+    def __init__(self, urldir, iddir, dftxt):
+        super(MainWindow, self).__init__()
+        self.__loginTime = 0
+
+        self.__initUI(dftxt)
         self.aco = login.AutoCheckOut(urldir, iddir)
     
-    def __initUI(self):
+    def __initUI(self, dftxt):
         self.setGeometry(0, 0, 800, 800)  # x, y, w, h
         self.setWindowTitle('AutoCheckOut')
         self.status_bar = self.statusBar()
@@ -24,17 +28,17 @@ class MainWindow(QMainWindow):
         self.txtbox = QLineEdit(self)
         self.txtbox.move(100, 150)
         self.txtbox.resize(250, 30)
-        self.txtbox.setText('아산/배방읍/자택')
+        self.txtbox.setText(dftxt)
         # push button
         btn_act = QPushButton('&Activate', self)
         btn_act.clicked.connect(self.__activate)
         btn_act.setStyleSheet('background-color: green; color: white')
         btn_act.move(100, 200)
         # radio button
-        rbt_login = QRadioButton('login', self)
+        rbt_login = QRadioButton('출첵', self)
         rbt_login.setChecked(True)
         rbt_login.move(100, 50)
-        rbt_none = QRadioButton('none', self)
+        rbt_none = QRadioButton('로그인만', self)
         rbt_none.move(200, 50)
         self.actMode = QButtonGroup()
         self.actMode.addButton(rbt_login, 0)
@@ -62,6 +66,11 @@ class MainWindow(QMainWindow):
         self.ampm_sec = QLabel(self)
         self.ampm_sec.move(560, 150)
         self.ampm_sec.setAlignment(Qt.AlignRight)
+        # activate flag display
+        self.act = QLabel(self)
+        self.act.move(350, 200)
+        self.act.setText('...')
+        self.act.resize(300, 50)
 
         self.show()
 
@@ -82,14 +91,25 @@ class MainWindow(QMainWindow):
 
         timer = Timer(1, self.timerOn)
         timer.start()
+        if self.__loginTime:
+            self.__startChrome(kor)
         
     def __activate(self):
-        _xpath = self.aco.xPath()
-        self.aco.openURL(_xpath)
-        if self.aco.login():
-            self.aco.checkOut()
-        
+        if self.isOut.checkedId():  # 저녁 6시
+            self.act.setText('저녁 6시를 기다리는 중')
+            self.act.setStyleSheet('Color : green')
+            self.__loginTime = 18
 
+    def __startChrome(self, kor):
+        if kor.tm_hour >= self.__loginTime and kor.tm_min >= 0 and kor.tm_sec >= SEC_DELAY:
+            self.__loginTime = 0
+            _xpath = self.aco.xPath()
+            self.aco.openURL(_xpath)
+            if self.aco.login():
+                self.aco.checkOut()
+            self.act.setText('출석체크 완료!')
     
     def __readButtonGroup(self):
         want = self.actMode.checkedId()
+    
+

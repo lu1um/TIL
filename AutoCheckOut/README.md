@@ -3,9 +3,10 @@
 ** 참고 문헌 **
 1. https://sir.kr/so_python/273
 2. https://pythondocs.net/selenium/셀레니움-wait-개념-이해하기-implicitly-wait-vs-explicitly-wait/
+3. https://hwan001.tistory.com/119
 
 1. chrome 설치
-2. selenium 설치
+2. selenium, pyqt5, schedule
 3. chromedriver 설치 - 같은 디렉토리에 넣기!
 
 같은 폴더내의 URL.txt, PASSWORD.txt를 만들고, 클릭하기 원하는 URL, XPath, ID, 비번을 저장해놓았다.

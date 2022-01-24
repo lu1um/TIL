@@ -2,16 +2,20 @@
 import sys
 from time import sleep
 
+import install
+install.__init__()
 import interface
 
 URL_TEXT_DIRECTORY = 'URL.txt'
 ID_TEXT_DIRECTORY = 'PASSWORD.txt'
+DEFALUT_TEXT = '아산/배방읍/자택'
 
 def main():
     app = interface.QApplication(sys.argv)
-    ui = interface.MainWindow(URL_TEXT_DIRECTORY, ID_TEXT_DIRECTORY)
+    ui = interface.MainWindow(URL_TEXT_DIRECTORY, ID_TEXT_DIRECTORY, DEFALUT_TEXT)
     ui.timerOn()
     sys.exit(app.exec_())
         
 if __name__ == '__main__':
     main()
+
