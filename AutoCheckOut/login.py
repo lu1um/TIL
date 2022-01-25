@@ -15,24 +15,29 @@ SURVEY = 2
 MAIN_PATH = __file__ + '\\..\\'
 
 class AutoCheckOut:
-    def __init__(self, urltxt, idtxt):
+    def __init__(self, urltxt, idtxt, surveytxt):
         self.__url = str()
-        self.__xpath = str()
+        self.__checkout = str()
+        self.__checkin = str()
         self.__id = str()
         self.__password = str()
         self.__surveyUrl = str()
         self.__surveyXpath = list()
+
+        self.idtxt = idtxt
         self.driver = Chrome(MAIN_PATH + 'chromedriver.exe')
 
         self.driver.minimize_window()
-        self.loadURL(urltxt)
-        self.loadID(idtxt)
+        self.__loadURL(urltxt, surveytxt)
+        self.__loadID()
 
-    def loadURL(self, urltxt, stxt):
+    def __loadURL(self, urltxt, stxt):
         with open(MAIN_PATH + urltxt, 'r') as F:
             self.__url = F.readline()
             self.__url = self.__url.strip('\n')
-            self.__xpath = F.readline()
+            self.__checkout = F.readline()
+            self.__checkout = self.__checkout.strip('\n')
+            self.__checkin = F.readline()
         with open(MAIN_PATH + stxt, 'r') as S:
             pass
             # self.__surveyUrl = S.readline()
@@ -40,11 +45,20 @@ class AutoCheckOut:
             # __surveyxpath 반복문으로 저장하기
         # survey #
 
-    def loadID(self, idtxt):
-        with open(MAIN_PATH + idtxt, 'r') as F:
-            self.__id = F.readline()
-            self.__id = self.__id.strip('\n')
-            self.__password = F.readline()
+    def __loadID(self):
+        try:
+            with open(MAIN_PATH + self.idtxt, 'r') as F:
+                self.__id = F.readline()
+                self.__id = self.__id.strip('\n')
+                self.__password = F.readline()
+        except:
+            self.__id = ''
+            self.__password = ''
+
+    def receiveID(self, id, pw):
+        with open(MAIN_PATH + self.idtxt, 'w') as F:
+            F.write(f'{id}\n{pw}')
+
 
     def openURL(self, url=LOGIN):
         if url==LOGIN:
@@ -68,14 +82,16 @@ class AutoCheckOut:
         return True
     
     def checkOut(self):
-        self.driver.find_element_by_xpath(self.__xpath).click()
+        self.driver.find_element_by_xpath(self.__checkout).click()
+
+    def checkIn(self):
+        self.driver.find_element_by_xpath(self.__checkin).click()
+
+    def maximize(self):
+        self.driver.maximize_window()
 
     def thisURL(self): # 지금 이 페이지가 뭔지 알려주는 함수
         pass
-
-    def xPath(self):
-        return self.__xpath
-
-    def test(self):
-        print(self.__url)
-        print(self.CHECKOUT_XPATH)
+    
+    def getIDPW(self):
+        return self.__id, self.__password
