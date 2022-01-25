@@ -1,0 +1,23 @@
+#!/usr/bin/env python
+
+lst = input().split('\n')
+squares = list()
+for i in range(101):
+    squares.append([0] * 101)
+    squares[i][0] = i
+result = 0
+
+for cords in lst:
+    cord = cords.split(' ')
+    startx = int(cord[0])
+    starty = int(cord[1])
+    endx = int(cord[2])
+    endy = int(cord[3])
+    for idx, square in enumerate(squares[starty:endy]):
+        square[startx:endx] = [1] * len(square[startx:endx])
+    
+for square in squares:
+    result += sum(square[1:])
+print(result)
+
+# 1 2 4 4\n2 3 5 7\n3 1 6 5\n7 3 8 6
