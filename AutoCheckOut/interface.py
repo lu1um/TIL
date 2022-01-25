@@ -2,11 +2,10 @@
 
 from threading import Timer
 import time
-import schedule
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QMessageBox, QMainWindow, QLabel, QLineEdit, QPushButton, QRadioButton, QButtonGroup
-from PyQt5.QtGui import QPixmap, QPainter, QPen, QFont, QImage
+from PyQt5.QtGui import QFont
 
 import login
 

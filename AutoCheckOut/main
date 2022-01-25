@@ -3,7 +3,8 @@ import sys
 from time import sleep
 
 import install
-install.__init__()
+if install.__init__():
+    print('librarys had been installed.')
 import interface
 
 URL_TEXT_DIRECTORY = 'URL.txt'
