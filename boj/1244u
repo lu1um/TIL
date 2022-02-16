@@ -1,9 +1,0 @@
-#!/usr/bin/env python
-
-switchCount = int(input())
-switchStat = map(int, input().split())
-studentCount = int(input())
-student = list()
-while studentCount<1:
-    student.append(map(int, input().split()))
-    studentCount -= 1

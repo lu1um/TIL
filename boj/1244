@@ -1,0 +1,38 @@
+#!/usr/bin/env python
+
+N = int(input())
+switch = 0
+for idx, sw in enumerate(map(int, input().split())):
+    switch |= sw << idx
+std_count = int(input())
+std = [list(map(int, input().split())) for _ in range(std_count)]
+
+for st in std:
+    toggle = 0
+    temp = st[1] - 1
+    if st[0] == 1:
+        while temp < N:
+            toggle |= 1 << temp
+            temp += st[1]
+    if st[0] == 2:
+        toggle = 1 << temp
+        for i in range(1, 100):        # switches are fewer than 100
+            if temp + i > N-1 or temp - i < 0:
+                break
+            left = switch & (1 << temp + i)
+            right = switch & (1 << temp - i)
+            if bool(left) == bool(right):
+                toggle |= 1 << temp + i
+                toggle |= 1 << temp - i
+            else:
+                break
+    switch ^= toggle
+
+for i in range(N):
+    if i == 0:
+        pass
+    elif i % 20:
+        print('', end=' ')
+    else:
+        print()
+    print(switch >> i & 1, end='')
