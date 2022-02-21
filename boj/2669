@@ -10,4 +10,5 @@ for _ in range(4):
     
 for square in squares:
     result += sum(square)
+
 print(result)

@@ -6,7 +6,7 @@ for idx, sw in enumerate(map(int, input().split())):
     switch |= sw << idx
 std_count = int(input())
 std = [list(map(int, input().split())) for _ in range(std_count)]
-
+# 0b010011
 for st in std:
     toggle = 0
     temp = st[1] - 1

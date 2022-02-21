@@ -2,7 +2,7 @@
 
 first = int(input())
 second = first
-max_num = {'length': 0, 'number':[]}
+max_num = {'length': 0, 'number': []}
 
 while second > first // 2:
     numbers = [first, second]
@@ -18,5 +18,3 @@ while second > first // 2:
 
 print(max_num['length'])
 print(*max_num['number'])
-        
-    
