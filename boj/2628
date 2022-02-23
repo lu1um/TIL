@@ -1,0 +1,19 @@
+#!/usr/bin/env python
+
+width, height = map(int, input().split())
+cut_iter = int(input())
+cut = [[height],[width]]
+for _ in range(cut_iter):
+    dr, n = map(int, input().split())
+    cut[dr].append(n)
+cut[0].sort()
+cut[1].sort()
+largest_piece = [0, 0]
+for i in range(2):
+    begin = 0
+    for c in cut[i]:
+        length = c - begin
+        begin = c
+        if length > largest_piece[i]:
+            largest_piece[i] = length
+print(largest_piece[0]*largest_piece[1])
