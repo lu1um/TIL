@@ -1,0 +1,27 @@
+#!/usr/bin/env python
+
+import sys
+sys.stdin = open('input.txt')
+
+N = int(input())
+dice = dict()
+for key in range(N):
+    die = list(map(int, input().split()))
+    dice.update({key:[[die[0], die[-1]], [die[1], die[3]], [die[2], die[4]]]})
+
+# DFS
+max_pips = 0
+for top_pip in range(1, 7):
+    sum_pips = 0
+    for key in range(N):
+        value = dice[key][:]        # dice 딕셔너리에서 key에 해당하는 주사위 불러옴
+        for idx in range(3):          # 불러온 눈모음 3개를 for문
+            if top_pip in value[idx]:     # 눈모음 각 1개중 top_pip이 포함된 눈모음일 경우
+                pips = value.pop(idx)
+                top_pip = pips[pips.index(top_pip)-1]   # top_pip이 아닌거로 top_pip 재설정
+                sum_pips += max(*value[0], *value[1])
+                break
+    if sum_pips > max_pips:
+        max_pips = sum_pips
+
+print(max_pips)
