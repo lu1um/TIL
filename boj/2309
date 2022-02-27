@@ -26,8 +26,8 @@ for p in permutations:
         for i in range(9):
             if p[i] == 1:
                 real_dwarf.append(dwarfs[i])
+        break
 
 real_dwarf.sort()
 for dwarf in real_dwarf:
     print(dwarf)
-
