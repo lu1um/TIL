@@ -15,40 +15,40 @@ def maxHeight(lst):
 N = int(input())
 pillars = sorted([list(map(int, input().split())) for _ in range(N)])
 
+print(pillars)
 tops = list()
 ceiling, c_idx = maxHeight(pillars)
-tops.append(c_idx)
+tops.append(c_idx)      # highest ceiling's index append
 left_end = 0
 right_end = 0
 while True:
-    if left_end == 0:
+    if left_end == 0:   # find and append left side ceiling
         left_top, left_idx = maxHeight(pillars[:tops[0]])
         if left_top == 0:
             left_end = 1
         else:
             tops.insert(0, left_idx)
-    if right_end == 0:
+    if right_end == 0:  # same doing at right side
         right_top, right_idx = maxHeight(pillars[tops[-1]+1:])
         if right_top == 0:
             right_end = 1
         else:
             tops.append(tops[-1]+1+right_idx)
-    if left_end and right_end:
+    if left_end and right_end:  # break condition
         break
 
 area = 0
 x = 0
 y = 0
-top = tops.pop(0)
-while True:
+while True:         # left side of top ceiling
+    top = tops.pop(0)
     area += (pillars[top][0]-x) * y
     x = pillars[top][0]
     y = pillars[top][1]
     if top == c_idx:
         break
-    top = tops.pop(0)
-area += y
-while tops:
+area += y           # highest ceiling area add
+while tops:         # right side of top ceiling
     top = tops.pop(0)
     area += (pillars[top][0]-x) * pillars[top][1]
     x = pillars[top][0]
