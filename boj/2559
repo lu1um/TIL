@@ -3,10 +3,10 @@
 N, K = map(int, input().split())
 lst = list(map(int, input().split()))
 
-max_sum = -100000
 sum_lst = sum(lst[:K])
-for i in range(N-K+1):   # 1 2 3 4 5 6
-    ap = lst[i+K-1]
+max_sum = sum_lst
+for i in range(N-K):
+    ap = lst[i+K]
     de = lst[i]
     sum_lst += ap - de
     if sum_lst > max_sum:
