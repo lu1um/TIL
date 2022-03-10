@@ -1,0 +1,53 @@
+#!/usr/bin/env python
+
+def main():
+    N = int(input())
+    board = [list(map(int, input().split())) for _ in range(N)]
+
+    bishop = Bishop(board, N)
+    print(bishop.max_bishop)
+
+class Bishop:
+    def __init__(self, board, N):
+        self.max_bishop = 0
+        self.N = N
+        self.bishop(board, 0, 0)
+
+    def bishop(self, board, i, j):
+        isEnd = True
+        for row in board[i:]:
+            if row.count(1):
+                isEnd = False
+                break
+        if (i == self.N-1 and j == self.N-1) or isEnd:
+            counter = 0
+            for row in board:
+                counter += row.count(2)
+            if counter > self.max_bishop:
+                self.max_bishop = counter
+            return
+        while board[i][j] == 0:
+            j += 1
+            if j == self.N:
+                i += 1
+                j = 0
+            if i == self.N-1 and j == self.N-1:
+                self.bishop(board, i, j)
+                return
+        _board = [board[k][:] for k in range(self.N)]
+        _i = i
+        _j = j+1
+        if _j == self.N:
+            _i += 1
+            _j = 0
+        self.bishop(_board, _i, _j) # 비숍을 두지 않았을 때
+        _board[i][j] = 2
+        for inc in range(1, self.N):
+            if i+inc < self.N and j-inc > -1:
+                _board[i+inc][j-inc] = 0
+            if i+inc < self.N and j+inc < self.N:
+                _board[i+inc][j+inc] = 0
+        self.bishop(_board, _i, _j) # 비숍을 두었을 때
+
+if __name__ == '__main__':
+    main()
