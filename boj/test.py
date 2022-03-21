@@ -1,3 +1,6 @@
-row = [2,1,1,1,1,2,12,2,1]
-
-print(row.count(2))
+for i in range(3, 3):
+    print(i)
+    if i == 2:
+        pass
+else:
+    print('else문 출력!')
