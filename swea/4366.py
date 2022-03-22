@@ -3,8 +3,6 @@ sys.stdin = open('input.txt')
 
 def main():
     T = int(input())
-
-    fixed_bin = list()
     for tc in range(1, T+1):
         binary = list(input())
         ternary = list(input())
