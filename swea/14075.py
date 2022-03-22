@@ -20,7 +20,6 @@ class Tree:
             if self.node[i] == 0:
                 self.node[i] = self.node[i*2] + self.node[i*2+1]
 
-
 T = int(input())
 for tc in range(1, T+1):
     tree = Tree()

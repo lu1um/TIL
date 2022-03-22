@@ -1,9 +1,6 @@
 import sys
 sys.stdin = open('input.txt')
 
-LEAF = 1
-PARENT = 2
-
 def main():
     T = int(input())
     for tc in range(1, T+1):
@@ -20,16 +17,11 @@ class Traversal:
 
     def inOrder(self, tree, N, v):
         if v <= N:
-            if self.inOrder(tree, N, v*2) == LEAF:
-                tree[v] = self.num
-                self.num += 1
-                return PARENT
-            else:
-                tree[v] = self.num
-                self.num += 1
-                self.inOrder(tree, N, v*2 + 1)
-        else:
-            return LEAF
+            self.inOrder(tree, N, v*2)
+            tree[v] = self.num
+            self.num += 1
+            self.inOrder(tree, N, v*2+1)
+        return
 
 if __name__ == '__main__':
     main()

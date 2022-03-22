@@ -19,6 +19,12 @@ class Traversal:
     def __init__(self, tree):
         self.tree = tree
         self.stack = list()
+        self.calculate = {
+            '+': add,
+            '-': sub,
+            '*': mul,
+            '/': div,
+        }
 
     def postOrder(self, v):
         node = self.tree[v]
@@ -27,17 +33,21 @@ class Traversal:
             self.postOrder(node[1][1])
             right = float(self.stack.pop())
             left = float(self.stack.pop())
-            if node[0] == '+':
-                self.stack.append(left+right)
-            elif node[0] == '-':
-                self.stack.append(left-right)
-            elif node[0] == '*':
-                self.stack.append(left*right)
-            elif node[0] == '/':
-                self.stack.append(left/right)
+            self.calculate[node[0]](self.stack, left, right)
         else:
             self.stack.append(node[0])
-            return
+
+def add(stack, left, right):
+    stack.append(left+right)
+
+def sub(stack, left, right):
+    stack.append(left-right)
+
+def mul(stack, left, right):
+    stack.append(left*right)
+
+def div(stack, left, right):
+    stack.append(left/right)
 
 if __name__ == '__main__':
     main()
