@@ -1,5 +1,5 @@
 import sys
-sys.stdin = open('input.txt')
+sys.stdin = open('input.txt')   # 노드의 합
 
 class Tree:
     def __init__(self):

@@ -1,5 +1,5 @@
 import sys
-sys.stdin = open('input.txt')
+sys.stdin = open('input.txt')   # 수영장
 
 def main():
     T = int(input())

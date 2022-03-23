@@ -1,5 +1,5 @@
 import sys
-sys.stdin = open('input.txt')
+sys.stdin = open('input.txt')   # 이진 탐색
 
 def main():
     T = int(input())
