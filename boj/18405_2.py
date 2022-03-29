@@ -17,7 +17,7 @@ S, X, Y = map(int, input().split())
 
 queue.sort()
 queue = deque(queue)
-while queue:
+while queue:    # BFS
     virus, i, j, time = queue.popleft()
     if time == S:
         break
