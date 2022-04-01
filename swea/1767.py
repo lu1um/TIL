@@ -20,13 +20,15 @@ for tc in range(1, T+1):
                     di, dj = d
                     row = i+di
                     col = j+dj
+                    length = 1
                     while 0<=row<N and 0<=col<N:
                         if exynos[row][col]:
+                            length = 0
                             break
                         row += di
                         col += dj
-                    else:
-                        connect.append(d)
+                        length += 1
+                    connect.append(length)
                 cores.append([i, j, connect])
     print(cores)
 
