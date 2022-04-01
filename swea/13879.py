@@ -11,7 +11,7 @@ def game(lst):
     right_card = cards[right]
     if left_card == 1:
         if right_card == 1 or right_card == 3:
-            return left # list가 아님
+            return left
         else:
             return right
     elif left_card == 2:
@@ -28,7 +28,7 @@ def game(lst):
 T = int(input())
 for tc in range(1, T+1):
     N = int(input())
-    cards = list(map(int, input().split()))
-    player = list(range(N))
+    cards = list(map(int, input().split())) # 2 1 3 1 2 1
+    player = list(range(N)) # 0 1 2 3 4 5
     winner = game(player)
     print(f'#{tc} {winner+1}')

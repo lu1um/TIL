@@ -1,28 +1,24 @@
-def dfs(k, i, j, num):
-    global res
-    if num==n: # q를 n개만큼 놓았을때, 종료
-        res += 1
-        return
-    elif k==n*n:
-        return
+from itertools import combinations
 
-    for di, dj in ((0, 1),(0,-1),(1, 0),(-1,0),(-1,-1), (1, 1), (1, -1), (-1, 1)):
-        # 새로 간 위치에서 퀸이 있는 곳을 공격하면 안되므로
-        # 새로간 dfs에서 둘러볼 방향을 설정해준다.
-        for x in range(1, n):
-            ni, nj = i+di*x, j+dj*x
-            if 0<=ni<n and 0<=nj<n:
-                if arr[ni][nj]==0:
-                    arr[ni][nj] = 1
-                    dfs(k+1, ni, nj, num+1)
-                elif arr[ni][nj]==1:
-                    dfs(k+1, ni, nj, num)
+N = int(input())
+table = [list(map(int, input().split())) for _ in range(N)]
+foods = range(N)
+A_lists = combinations(foods, N // 2)
 
-n = int(input())
-arr = [[0]*n for _ in range(n)]
-# 서로를 공격할 수 없게 놓아라 !
-res = 0
-for i in range(n):
-    for j in range(n):
-        dfs(1, i, j, 0)
-print(res)
+result = 20000 * 4
+for A_list in A_lists:
+    B_list = list(foods)[:]
+    A = 0
+    B = 0
+    for p in A_list:
+        B_list.remove(p)
+    for i in A_list:
+        for j in A_list:
+            A += table[i][j]
+    for i in B_list:
+        for j in B_list:
+            B += table[i][j]
+    temp = abs(A - B)
+    if temp < result:
+        result = temp
+print(result)
