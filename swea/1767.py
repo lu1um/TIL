@@ -12,7 +12,7 @@ for tc in range(1, T+1):
     N = int(input())
     exynos = [list(map(int, input().split())) for _ in range(N)]
     cores = list()
-    for i in range(1, N-1):     # 가생이에 있는 코어는 고려할 필요 없음
+    for i in range(1, N-1):     # 테두리에 있는 코어는 고려할 필요 없음
         for j in range(1, N-1):
             if exynos[i][j]:
                 connect = list()

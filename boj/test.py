@@ -5,7 +5,7 @@ table = [list(map(int, input().split())) for _ in range(N)]
 foods = range(N)
 A_lists = combinations(foods, N // 2)
 
-result = 20000 * 4
+result = 100*20
 for A_list in A_lists:
     B_list = list(foods)[:]
     A = 0

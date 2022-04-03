@@ -6,7 +6,7 @@ def solution(orders, course):
         candidates = []
         new_menu = {}
         for menu in orders:
-            menu_li = list(''.join(menu))
+            menu_li = list(menu)
             for li in combinations(menu_li, k):
                 res = ''.join(sorted(li))
                 if res not in candidates:
