@@ -9,7 +9,6 @@ DELTA = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
 N, M = map(int, input().split())
 arr = [list(map(int, input().split())) for _ in range(N)]
-
 blank = []
 virus = []
 blank_count = 0
