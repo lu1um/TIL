@@ -20,7 +20,7 @@ for i in range(N):
         elif arr[i][j] == 2:
             virus.append((i, j))
 
-blank_comb = combinations(blank, 3)
+blank_comb = combinations(blank, 3) # [(1,1), (1,2), 1,3)]
 max_cell = 0
 for bk in blank_comb:
     cell = blank[:]
