@@ -21,7 +21,6 @@ for tc in range(1, T+1):
                 nodes.append((i, j))
                 nodes[0], nodes[-1] = nodes[-1], nodes[0]
                 nodes_count += 1
-
     stack = [nodes[0]]
     cable = 0
     while True:

@@ -2,18 +2,18 @@ def solution(s):
     origin = list(s)
     length = len(origin)
     min_len = 1001
-    for i in range(1, length//2 + 1):
+    for iter in range(1, length//2 + 1):
         start = 0
         new = ''
-        while start < length-i:
-            compare = ''.join(origin[start:start+i])
+        while start < length-iter:
+            compare = ''.join(origin[start:start+iter])
             same = 1
-            start += i
-            while s[start:start+i] == compare:
-                start += i
+            start += iter
+            while s[start:start+iter] == compare:
+                start += iter
                 same += 1
             if same > 1:
-                new = new + f'{same}' + compare
+                new = new + str(same) + compare
             else:
                 new = new + compare
         if start < length:

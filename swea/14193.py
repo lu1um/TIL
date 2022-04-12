@@ -43,6 +43,9 @@ for tc in range(1, T+1):
                         visited[di][dj] = visited[i][j] + 1
                         queue.append((di, dj))
 
+    for i in range(node_num):
+        print(nodes[i])
+
     connected = [False] * node_num
     connected[1] = True
     total_cable = 0
