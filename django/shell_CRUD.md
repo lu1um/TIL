@@ -38,3 +38,34 @@
 - DB에 save된 것을 바로 수정, 삭제하는 것은 불가능하다.
 - 따라서 get, all 등으로 불러와서 객체를 수정한 뒤 다시 save해주는 편이 낫다.
 - `객체.delete()` : 객체의 모든 튜플 삭제. 따라서 filter를 통해 지울 튜플만 불러온 뒤, delete를 실행하면 DB에서 해당 튜플들만 삭제된다.
+
+
+
+#### Aggregate
+
+- 집계 함수(Avg, Sun, Max 등)을 사용할 때 써야하는 메서드
+
+```python
+User.objects.aggregate(average=Avg('balance'))
+```
+
+
+
+#### Annotate
+
+- 새로운 필드를 만들어, 값을 집어넣는 것이다. 실제 DB에는 영향이 없고, 출력 queryset에만 영향이 있다.
+
+```python
+movies = Movie.objects.annotate(score_avg=Avg('comment__score'))
+```
+
+- 1:N으로 연결되어있는 comment의 score들의 평균값을 Movie의 새로운 필드로 만들어 붙여준다.
+- 그룹화를 하고 싶다면 아래와 같이 작성한다.
+
+```python
+from django.db.models import Count
+
+User.objects.values('country').annotate(Count('country'))
+```
+
+- country의 수가 붙고, country가 출력되게된다.
