@@ -1,6 +1,5 @@
-a = ()
+a = 1
+b = [1,2,3]
 
-if a:
-    print(a)
-else:
-    print('false')
+c = max(a, *b)
+print(c)
