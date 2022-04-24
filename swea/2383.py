@@ -52,16 +52,12 @@ for tc in range(1, T+1):
         stair_occupy = [0, 0]
         while sum(state) < people_number * STATE_FINISH:
             move_time = min(people_time)
+            waiting = list()
             for i in range(people_number):
                 people_time[i] -= move_time
                 if people_time[i] <= 0:
                     if state[i] == STATE_WAIT:
-                        if stair_occupy[case[i]] < 3:
-                            state[i] += 1
-                            stair_occupy[case[i]] += 1
-                            people_time[i] = stairs[case[i]][2]
-                        else:
-                            people_time[i] = 1
+                        waiting.append(i)
                     elif state[i] == STATE_STAIR:
                         state[i] += 1
                         stair_occupy[case[i]] -= 1
@@ -69,6 +65,13 @@ for tc in range(1, T+1):
                     elif state[i] == STATE_ROOM:
                         state[i] += 1
                         people_time[i] = 1
+            for i in waiting:   # 순서대로 확인하지말고, 다 내려간사람부터 먼저 occupy를 해제해주자.
+                if stair_occupy[case[i]] < 3:
+                    state[i] += 1
+                    stair_occupy[case[i]] += 1
+                    people_time[i] = stairs[case[i]][2]
+                else:
+                    people_time[i] = 1
             time += move_time
         if time < min_time:
             min_time = time
