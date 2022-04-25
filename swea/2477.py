@@ -11,6 +11,8 @@ STATUS_END = 5
 
 T = int(input())
 for tc in range(1, T+1):
+    if tc == 4:
+        print('tc4')
     N, M, K, A, B = map(int, input().split())
     A -= 1
     B -= 1
