@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Youtube Mobile</title>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <i class="fab fa-youtube"></i>
+      <span class="title">Youtube</span>
+    </div>
+    <div class="icons">
+      <i class="fas fa-search"></i>
+      <i class="fas fa-ellipsis-v"></i>
+    </div>
+  </header>
+
+  <section class="player">
+    <video controls src="video.mp4"></video>
+  </section>
+
+  <div class="infoAndUpNext">
+    <section class="info">
+      <div class="metadata">
+        <ul class="hashtags">
+          <li>#DreamCoding</li>
+          <li>#DreamCoders</li>
+          <li>#lu1um</li>
+        </ul>
+        <div class="titleAndButton">
+          <span class="title clamp">
+            내 것이다 저 아이 내 것이라고 했어
+          </span>
+          <button id="moreBtn" class="moreBtn"><i class="fas fa-caret-down"></i></button>
+        </div>
+        <div class="views">
+          <span class="views">99K views 1 month ago</span>
+        </div>
+      </div>
+      <ul class="actions">
+        <li><button><i class="fas fa-thumbs-up active"></i><span>1K</span></button></li>
+        <li><button><i class="fas fa-thumbs-down"></i><span>124</span></button></li>
+        <li><button><i class="fas fa-share"></i><span>Share</span></button></li>
+        <li><button><i class="fas fa-plus"></i><span>Save</span></button></li>
+        <li><button><i class="fab fa-font-awesome-flag"></i><span>Report</span></button></li>
+      </ul>
+      <div class="channel">
+        <div class="metadata">
+          <img src="profile.jpg" alt="">
+          <div class="info">
+            <span class="name">내이름</span>
+            <span class="subscribers">구독자수</span>
+          </div>
+        </div>
+        <button class="subscribe">subscribe</button>
+      </div>
+    </section>
+    <section class="upNext">
+      <span class="title">Up next</span>
+      <ul>
+        <li class="item">
+          <div class="img">        
+            <img src="ERD.jpg" alt="">
+          </div>
+          <div class="info">
+            <span class="title">ERD 잘 그리는법</span>
+            <span class="name">박다빈 교수님의 ERD 잘그리기 강의</span>
+            <span class="views">5 visited</span>
+          </div>
+          <button class="moreBtn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        </li>
+      </ul>
+    </section>
+  </div>
+  <script>
+    const moreBtn = document.querySelector('#moreBtn')
+    const title = document.querySelector('.info .metadata .title')
+
+    moreBtn.addEventListener('click', () => {
+      moreBtn.classList.toggle('clicked')
+      title.classList.toggle('clamp')
+    })
+  </script>
+  <script src="https://kit.fontawesome.com/5baadafa4b.js" crossorigin="anonymous"></script>
+</body>
+</html>
