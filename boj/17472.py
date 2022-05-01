@@ -54,6 +54,7 @@ for num in range(2, island_number):
                 if length-1 < bridges[num-2][connect-2]:
                     bridges[num-2][connect-2] = length-1
 
+# MST
 answer = 10*6
 for start in range(island_count):
     connected = [False] * island_count
