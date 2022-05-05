@@ -1,4 +1,4 @@
-def solution(dartResult):
+def solution(dartResult):  # "1D2S#10S"
     idx = 0
     scores = [0, 0, 0]
     for j in range(3):
