@@ -26,8 +26,8 @@ def solution(str1, str2):
         else:
             pre = ''
 
-    cross = 0
-    union = 0
+    cross = 0   # 개수만 구함
+    union = 0   # 개수만 구함
     cross_group = []
     for key in group1.keys():
         if group2.get(key):
@@ -42,7 +42,7 @@ def solution(str1, str2):
     if union:
         answer = int(cross/union * 65536)
     else:
-        answer = 65536
+        answer = 65536  # 0/0 13535/0
     return answer
 
 print(solution('FRANCE', 'french'))
