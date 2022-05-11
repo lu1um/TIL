@@ -15,4 +15,5 @@ def solution(cacheSize, cities):
             cache.pop(0)
             cache.append(city)
     return running_time
+
 print(solution(3, ["Jeju", "Pangyo", "Seoul", "NewYork", "LA", "Jeju", "Pangyo", "Seoul", "NewYork", "LA"]))
