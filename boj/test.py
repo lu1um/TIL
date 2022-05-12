@@ -1,5 +1,4 @@
 a = 1
-b = [1,2,3]
+b = 2
 
-c = max(a, *b)
-print(c)
+print(min(a, b))
