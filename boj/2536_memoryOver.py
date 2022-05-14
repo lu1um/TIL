@@ -1,5 +1,4 @@
 import sys
-from pprint import pprint
 sys.stdin = open('input.txt')
 
 from collections import deque

@@ -1,4 +1,4 @@
-a = 1
+a = -4
 b = 2
 
-print(min(a, b))
+print(a//b)
